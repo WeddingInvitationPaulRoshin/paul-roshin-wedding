@@ -247,7 +247,7 @@ var _audioPlaying = false;
 function playAudioOnce() {
   if (_audioPlaying) return;
   if (!_audio) {
-    _audio = new Audio('music.wav');
+    _audio = new Audio('music.mp3'); _audio.type = 'audio/mpeg';
     _audio.loop = true;
     _audio.volume = 0.6;
   }
