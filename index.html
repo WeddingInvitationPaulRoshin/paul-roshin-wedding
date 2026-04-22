@@ -187,55 +187,35 @@ footer{padding:1.6rem;text-align:center;background:var(--text);color:rgba(255,25
   <div class="dp">🌸 ✦ 🌸 ✦ 🌸</div>
 
   <section class="ew" id="ewsec">
-    <div class="sl">✦ Events ✦</div>
-    <div class="st">The Celebrations</div>
+    <div class="st" style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.2rem,4vw,1.6rem);letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:1.6rem">Holy Matrimony</div>
+    
     <div class="tl">
       <div class="ei"><div class="ed"></div>
-        <div class="ec rv"><div class="ee">💒</div><div class="en">Holy Matrimony</div>
+        <div class="ec rv"><div class="ee">⛪</div>
           <div class="edt">Sunday, 31st May 2026<br>3:00 PM · St Joseph Church<br>Thannipuzha</div></div></div>
-      <div class="ei"><div class="ed"></div>
-        <div class="ec rv"><div class="ee">🥂</div><div class="en">Reception &amp; Feast</div>
-          <div class="edt">Following the Ceremony<br>Seema Auditorium, Perumbavoor</div></div></div>
-      <div class="ei"><div class="ed"></div>
-        <div class="ec rv"><div class="ee">✝</div><div class="en">Blessing &amp; Prayer</div>
-          <div class="edt">United in faith and love<br>God's grace upon this union</div></div></div>
+
+
     </div>
   </section>
 
   <div class="dp">✿ 🌷 ✿ 🌷 ✿</div>
 
   <section class="vw" id="vsec">
-    <div class="sl">✦ Join Us At ✦</div>
-    <div class="st">The Venue</div>
+    <div class="sl">✦ Join Us For Celebration ✦</div>
+    
+    <div class="st" style="margin-bottom:1.2rem">From 7 PM Onwards</div>
     <div class="vcd rv">
-      <div class="vi">⛪</div>
+      <div class="vi">🏛️</div>
       <div class="vn">Seema Auditorium</div>
-      <div class="va">Perumbavoor, Kerala<br>Sunday, May 31, 2026</div>
-      <a href="https://www.google.com/maps/search/Seema+Auditorium+Perumbavoor" target="_blank" class="mb">📍 Get Directions</a>
+      <div class="va">Kerala<br>Sunday, May 31, 2026</div>
+      <a href="https://www.google.com/maps/search/Seema+Auditorium+Perumbavoor" target="_blank" class="mb" onclick="stopAudio()">📍 Get Directions</a>
+
     </div>
-  </section>
-
-  <div class="dp">🌺 ✦ 🌺 ✦ 🌺</div>
-
-  <section class="pw">
-    <div class="sl">✦ Blessed By ✦</div>
-    <div class="st">Our Families</div>
-  </section>
-
-  <div class="dp">🌺 ✦ 🌺 ✦ 🌺</div>
-
-  <section class="clw">
-    <div style="font-size:2rem;color:var(--gold);margin-bottom:.8rem">✝</div>
-    <div class="clt">With Love &amp; Joy</div>
-    <div class="clb">We joyfully invite you to witness and celebrate<br>the beginning of our forever together.<br><br>
-      <em style="color:var(--rose)">Together in faith, love and God's grace</em></div>
-    <div class="cln">Paul &amp; Roshin</div>
-    <div class="cld">MAY 31 · 2026 · PERUMBAVOOR</div>
   </section>
 
   <footer>
     <div style="color:var(--gold);font-size:1.1rem;margin-bottom:.4rem">✝ 🌸 ✝</div>
-    Together in faith, love &amp; joy &nbsp;·&nbsp; Paul &amp; Roshin &nbsp;·&nbsp; May 31, 2026
+    Together in faith, love &amp; joy<br>Paul &amp; Roshin
   </footer>
 </div>
 
@@ -243,6 +223,39 @@ footer{padding:1.6rem;text-align:center;background:var(--text);color:rgba(255,25
 /* ─── AUDIO ─── */
 var _audio = null;
 var _audioPlaying = false;
+
+function stopAudio() {
+  if (_audio) {
+    _audio.pause();
+    _audio.currentTime = 0;
+    _audioPlaying = false;
+  }
+}
+
+function pauseAudio() {
+  if (_audio && !_audio.paused) {
+    _audio.pause();
+  }
+}
+
+function resumeAudio() {
+  if (_audio && _audioPlaying && _audio.paused) {
+    _audio.play().catch(function(){});
+  }
+}
+
+// Pause when screen is toggled / app goes to background
+document.addEventListener('visibilitychange', function() {
+  if (document.hidden) {
+    pauseAudio();
+  } else {
+    resumeAudio();
+  }
+});
+
+// Pause when page loses focus (switching apps on mobile)
+window.addEventListener('pagehide', function() { pauseAudio(); });
+window.addEventListener('pageshow', function() { resumeAudio(); });
 
 function playAudioOnce() {
   if (_audioPlaying) return;
@@ -298,7 +311,7 @@ function spawn_petals() {
 /* ─── COUNTDOWN ─── */
 function countdown() {
   function tick() {
-    var diff = new Date('2026-05-31T15:00:00') - new Date();
+    var diff = new Date('2026-05-31T19:00:00') - new Date();
     if (diff <= 0) {
       document.getElementById('cd').innerHTML = "<div style='font-family:Great Vibes,cursive;font-size:2rem;color:var(--text)'>The Day is Here! 🎉</div>";
       return;
