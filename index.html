@@ -8,6 +8,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Lato:wght@300;400&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+/* HD RENDERING - SAFE */
+html,body{
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+img{image-rendering:-webkit-optimize-contrast}
+
 :root{--rose:#eb8c9b;--blush:#fac9c9;--cream:#fdf2ec;--gold:#d4a574;--mauve:#c896a8;--text:#5a3e4b}
 html{scroll-behavior:smooth}
 body{font-family:"Lato",sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;-webkit-text-size-adjust:100%}
@@ -39,12 +47,25 @@ body{font-family:"Lato",sans-serif;background:var(--cream);color:var(--text);ove
 .cc{position:relative;z-index:5;text-align:center;padding:1.5rem 2rem;pointer-events:none}
 .cc-cross{font-size:2.8rem;color:var(--gold);margin-bottom:0.6rem;animation:cpx 2.5s infinite}
 @keyframes cpx{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.06)}}
-.cc-names{font-family:"Great Vibes",cursive;font-size:clamp(3rem,9vw,5.5rem);color:var(--text);line-height:1.1;margin-bottom:.4rem}
+.cc-names{font-family:"Great Vibes",cursive;font-size:clamp(3rem,9vw,5.5rem);color:var(--text);line-height:1.1;margin-bottom:.4rem;text-rendering:optimizeLegibility}
 .cc-sub{font-family:"Cormorant Garamond",serif;font-size:.95rem;letter-spacing:.38em;color:var(--mauve);text-transform:uppercase;margin-bottom:1.8rem}
 .cc-tag{display:inline-flex;align-items:center;gap:.6rem;border:1.5px solid var(--gold);padding:.6rem 1.8rem;border-radius:2rem;font-family:"Cormorant Garamond",serif;font-size:.82rem;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;animation:cfl 3s ease-in-out infinite}
 @keyframes cfl{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-.cc-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-size:.72rem;letter-spacing:.25em;color:var(--mauve);text-transform:uppercase;animation:cbl 2.2s infinite;white-space:nowrap;pointer-events:none}
-@keyframes cbl{0%,100%{opacity:1}50%{opacity:.2}}
+.cc-hint{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  font-size:.85rem;letter-spacing:.32em;
+  color:var(--text);text-transform:uppercase;
+  font-family:"Cormorant Garamond",serif;font-weight:600;
+  animation:cbl 1.8s infinite;white-space:nowrap;pointer-events:none;
+  text-shadow:0 2px 8px rgba(255,255,255,.8),0 0 2px rgba(255,255,255,.9);
+  padding:.5rem 1.4rem;
+  background:rgba(255,255,255,.4);
+  border-radius:2rem;
+  backdrop-filter:blur(4px);
+  border:1px solid rgba(255,255,255,.6);
+  box-shadow:0 4px 16px rgba(180,130,140,.2);
+}
+@keyframes cbl{0%,100%{opacity:1;transform:translateX(-50%) scale(1)}50%{opacity:.75;transform:translateX(-50%) scale(1.05)}}
 
 /* MAIN */
 #mp{display:none}
@@ -65,9 +86,9 @@ body{font-family:"Lato",sans-serif;background:var(--cream);color:var(--text);ove
 .fc.tr{top:-10px;right:-4px;animation-delay:.5s}
 .fc.bl{bottom:-10px;left:-4px;animation-delay:1s}
 .fc.br{bottom:-10px;right:-4px;animation-delay:1.5s}
-.cp-img{width:100%;display:block;object-fit:cover;object-position:center top;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;box-shadow:0 16px 48px rgba(180,130,140,.28);image-rendering:auto;-webkit-image-rendering:high-quality;filter:saturate(1.08) contrast(1.02)}
+.cp-img{width:100%;display:block;object-fit:cover;object-position:center top;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;box-shadow:0 16px 48px rgba(180,130,140,.32),0 4px 16px rgba(180,130,140,.15);image-rendering:-webkit-optimize-contrast;-webkit-image-rendering:high-quality;filter:saturate(1.08) contrast(1.03)}
 .xs{color:var(--gold);font-size:1.6rem;margin-bottom:.4rem}
-.nb{font-family:"Great Vibes",cursive;font-size:clamp(3.2rem,11vw,5.8rem);color:var(--text);line-height:1.05}
+.nb{font-family:"Great Vibes",cursive;font-size:clamp(3.2rem,11vw,5.8rem);color:var(--text);line-height:1.05;text-rendering:optimizeLegibility}
 .na{font-family:"Cormorant Garamond",serif;font-size:1rem;letter-spacing:.5em;color:var(--mauve);text-transform:uppercase;margin:.1rem 0}
 .vc{max-width:390px;margin:1.8rem auto 0;padding:1.3rem 1.6rem;background:rgba(255,255,255,.72);border-left:3px solid var(--gold);border-radius:0 1.2rem 1.2rem 0;box-shadow:0 4px 20px rgba(200,150,150,.1);font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.02rem;color:var(--text);line-height:1.75}
 .vr{font-style:normal;font-size:.78rem;color:var(--gold);margin-top:.5rem;letter-spacing:.12em}
@@ -170,6 +191,113 @@ footer{padding:1.6rem;text-align:center;background:var(--text);color:rgba(255,25
   animation:shimmerFlow 4s ease-in-out infinite;
   filter:drop-shadow(0 2px 4px rgba(201,169,110,.3));
   font-style:italic;
+}
+
+
+/* ULTRA HD + SHINY ADDITIONS */
+
+/* Gloss overlay across entire page */
+.gloss{
+  position:fixed;inset:0;pointer-events:none;z-index:4;
+  background:linear-gradient(135deg,transparent 0%,transparent 45%,rgba(255,255,255,.06) 50%,transparent 55%,transparent 100%);
+  mix-blend-mode:overlay;
+}
+
+/* Ultra-sharp text rendering (additive) */
+.nb,.cc-names,.na,.sd2,.vn,.ee,.en,.cn{
+  -webkit-font-smoothing:subpixel-antialiased;
+  font-feature-settings:"kern" 1,"liga" 1;
+}
+
+/* HD shine on couple image */
+.cp-img{
+  filter:saturate(1.15) contrast(1.05) brightness(1.02) !important;
+}
+
+.pf{
+  position:relative;
+}
+.pf::after{
+  content:"";position:absolute;top:0;left:0;width:100%;height:100%;
+  border-radius:50% 50% 50% 50%/62% 62% 38% 38%;
+  background:linear-gradient(135deg,rgba(255,255,255,.35) 0%,transparent 30%,transparent 70%,rgba(255,255,255,.15) 100%);
+  pointer-events:none;z-index:3;
+  mix-blend-mode:overlay;
+}
+
+/* Shine on cards */
+.ec,.vcd,.cb,.sco{
+  position:relative;
+}
+.ec::after,.vcd::after{
+  content:"";position:absolute;top:0;left:0;right:0;height:50%;
+  background:linear-gradient(180deg,rgba(255,255,255,.35),transparent);
+  border-radius:1.3rem 1.3rem 0 0;pointer-events:none;
+  mix-blend-mode:overlay;
+}
+.vcd::after{border-radius:2rem 2rem 0 0}
+
+/* Button shine */
+.mb{
+  background:linear-gradient(135deg,var(--rose) 0%,var(--mauve) 50%,var(--rose) 100%);
+  background-size:200% auto;
+  animation:btnGlow 3s ease-in-out infinite,buttonShine 6s linear infinite;
+}
+@keyframes buttonShine{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+
+/* Scroll button shine */
+#scrollBtn{
+  background:linear-gradient(135deg,var(--gold),var(--rose),var(--mauve),var(--gold));
+  background-size:300% 300%;
+  animation:scrollShine 5s ease-in-out infinite;
+}
+@keyframes scrollShine{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+#scrollBtn.show{animation:bounce 2s ease-in-out infinite,scrollShine 5s ease-in-out infinite}
+
+/* Glossy verse block */
+.vc{
+  background:linear-gradient(135deg,rgba(255,255,255,.85) 0%,rgba(255,255,255,.65) 100%);
+  backdrop-filter:blur(10px) saturate(1.1);
+  -webkit-backdrop-filter:blur(10px) saturate(1.1);
+}
+
+/* Extra glow for Holy Matrimony and section labels */
+.sl,.hm-title{
+  text-shadow:0 0 20px rgba(201,169,110,.2);
+}
+
+/* Polished footer */
+footer{
+  background:linear-gradient(135deg,var(--text) 0%,#6e4e5b 50%,var(--text) 100%);
+  background-size:200% 200%;
+  animation:footerShine 8s ease-in-out infinite;
+}
+@keyframes footerShine{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+/* Sharper curtain names */
+.cc-names{
+  filter:drop-shadow(0 2px 10px rgba(232,160,160,.4)) drop-shadow(0 0 20px rgba(201,169,110,.2));
+}
+
+/* Richer hero background with aurora shimmer */
+.hero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 100% 60% at 50% -10%,rgba(255,255,255,.5),transparent 60%);
+  mix-blend-mode:overlay;
+}
+
+/* Image shine that pulses */
+.cp-img{
+  box-shadow:
+    0 16px 48px rgba(180,130,140,.32),
+    0 4px 16px rgba(180,130,140,.2),
+    inset 0 0 0 2px rgba(255,255,255,.3),
+    0 0 48px rgba(232,160,160,.2);
+  animation:imagePulse 4s ease-in-out infinite;
+}
+@keyframes imagePulse{
+  0%,100%{box-shadow:0 16px 48px rgba(180,130,140,.32),0 4px 16px rgba(180,130,140,.2),inset 0 0 0 2px rgba(255,255,255,.3),0 0 48px rgba(232,160,160,.2)}
+  50%{box-shadow:0 20px 60px rgba(180,130,140,.42),0 6px 20px rgba(180,130,140,.3),inset 0 0 0 2px rgba(255,255,255,.4),0 0 70px rgba(232,160,160,.35)}
 }
 
 /* FAIRY-TALE SHINE EFFECTS */
@@ -317,21 +445,19 @@ footer{padding:1.6rem;text-align:center;background:var(--text);color:rgba(255,25
 
 <div id="cs" onclick="open_curtain()" ontouchstart="" ontouchend="open_curtain()">
   <div class="cp l">
-    <svg viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 200 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
       <defs><linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#fac9c9"/><stop offset="50%" style="stop-color:#fde8dc"/><stop offset="100%" style="stop-color:#e8b8b8"/></linearGradient></defs>
-      <rect width="100" height="100" fill="url(#lg1)"/>
-      <text x="50" y="30" text-anchor="middle" font-size="8" fill="rgba(201,169,110,.35)" font-family="serif">✿ ✦ ✿</text>
-      <text x="50" y="55" text-anchor="middle" font-size="12" fill="rgba(201,169,110,.25)" font-family="serif">🌸</text>
-      <text x="50" y="75" text-anchor="middle" font-size="8" fill="rgba(201,169,110,.35)" font-family="serif">✿ ✦ ✿</text>
+      <rect width="200" height="400" fill="url(#lg1)"/>
+      <text x="100" y="120" text-anchor="middle" font-size="22" fill="rgba(201,169,110,.4)" font-family="serif">✿ ✦ ✿</text>
+      <text x="100" y="300" text-anchor="middle" font-size="22" fill="rgba(201,169,110,.4)" font-family="serif">✿ ✦ ✿</text>
     </svg>
   </div>
   <div class="cp r">
-    <svg viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 200 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
       <defs><linearGradient id="lg2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#fac9c9"/><stop offset="50%" style="stop-color:#fde8dc"/><stop offset="100%" style="stop-color:#e8b8b8"/></linearGradient></defs>
-      <rect width="100" height="100" fill="url(#lg2)"/>
-      <text x="50" y="30" text-anchor="middle" font-size="8" fill="rgba(201,169,110,.35)" font-family="serif">✿ ✦ ✿</text>
-      <text x="50" y="55" text-anchor="middle" font-size="12" fill="rgba(201,169,110,.25)" font-family="serif">🌺</text>
-      <text x="50" y="75" text-anchor="middle" font-size="8" fill="rgba(201,169,110,.35)" font-family="serif">✿ ✦ ✿</text>
+      <rect width="200" height="400" fill="url(#lg2)"/>
+      <text x="100" y="120" text-anchor="middle" font-size="22" fill="rgba(201,169,110,.4)" font-family="serif">✿ ✦ ✿</text>
+      <text x="100" y="300" text-anchor="middle" font-size="22" fill="rgba(201,169,110,.4)" font-family="serif">✿ ✦ ✿</text>
     </svg>
   </div>
   <div class="cc">
@@ -348,6 +474,7 @@ footer{padding:1.6rem;text-align:center;background:var(--text);color:rgba(255,25
 <div id="mp">
   <div id="pc2"></div>
   <div id="stars"></div>
+  <div class="gloss"></div>
 
   <section class="hero">
     <div class="ft">🌸</div>
