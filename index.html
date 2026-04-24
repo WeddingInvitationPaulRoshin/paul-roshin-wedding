@@ -152,8 +152,11 @@ footer{padding:1.6rem;text-align:center;background:var(--text);color:rgba(255,25
 
 /* PETALS */
 #pc2{position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:2;overflow:hidden}
-.pt{position:absolute;top:-30px;opacity:0;animation:pd linear infinite;pointer-events:none}
-@keyframes pd{0%{transform:translateY(0) rotate(0deg) translateX(0);opacity:.8}50%{transform:translateY(50vh) rotate(180deg) translateX(20px);opacity:.6}100%{transform:translateY(110vh) rotate(360deg) translateX(-10px);opacity:0}}
+.pt{position:absolute;top:-30px;opacity:0;animation:pd linear infinite;pointer-events:none;will-change:transform,opacity}
+@keyframes pd{
+  0%{transform:translate3d(0,0,0) rotate(0deg);opacity:.8}
+  100%{transform:translate3d(0,110vh,0) rotate(360deg);opacity:0}
+}
 .rv{opacity:0;transform:translateY(22px);transition:opacity .75s ease,transform .75s ease}
 .rv.vis{opacity:1;transform:none}
 @media(max-width:480px){.nb{font-size:2.9rem}.pf{width:230px}.tl::before{display:none}}
@@ -183,25 +186,10 @@ footer{padding:1.6rem;text-align:center;background:var(--text);color:rgba(255,25
 }
 
 /* Make na ampersand glow */
-.na{
-  background:linear-gradient(135deg,var(--gold),var(--mauve),var(--gold));
-  background-size:200% auto;
-  -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;
-  animation:shimmerFlow 4s ease-in-out infinite;
-  filter:drop-shadow(0 2px 4px rgba(201,169,110,.3));
-  font-style:italic;
-}
+
 
 
 /* ULTRA HD + SHINY ADDITIONS */
-
-/* Gloss overlay across entire page */
-.gloss{
-  position:fixed;inset:0;pointer-events:none;z-index:4;
-  background:linear-gradient(135deg,transparent 0%,transparent 45%,rgba(255,255,255,.06) 50%,transparent 55%,transparent 100%);
-  mix-blend-mode:overlay;
-}
 
 /* Ultra-sharp text rendering (additive) */
 .nb,.cc-names,.na,.sd2,.vn,.ee,.en,.cn{
@@ -217,42 +205,15 @@ footer{padding:1.6rem;text-align:center;background:var(--text);color:rgba(255,25
 .pf{
   position:relative;
 }
-.pf::after{
-  content:"";position:absolute;top:0;left:0;width:100%;height:100%;
-  border-radius:50% 50% 50% 50%/62% 62% 38% 38%;
-  background:linear-gradient(135deg,rgba(255,255,255,.35) 0%,transparent 30%,transparent 70%,rgba(255,255,255,.15) 100%);
-  pointer-events:none;z-index:3;
-  mix-blend-mode:overlay;
-}
 
-/* Shine on cards */
-.ec,.vcd,.cb,.sco{
-  position:relative;
-}
-.ec::after,.vcd::after{
-  content:"";position:absolute;top:0;left:0;right:0;height:50%;
-  background:linear-gradient(180deg,rgba(255,255,255,.35),transparent);
-  border-radius:1.3rem 1.3rem 0 0;pointer-events:none;
-  mix-blend-mode:overlay;
-}
-.vcd::after{border-radius:2rem 2rem 0 0}
+
+
 
 /* Button shine */
-.mb{
-  background:linear-gradient(135deg,var(--rose) 0%,var(--mauve) 50%,var(--rose) 100%);
-  background-size:200% auto;
-  animation:btnGlow 3s ease-in-out infinite,buttonShine 6s linear infinite;
-}
-@keyframes buttonShine{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+
 
 /* Scroll button shine */
-#scrollBtn{
-  background:linear-gradient(135deg,var(--gold),var(--rose),var(--mauve),var(--gold));
-  background-size:300% 300%;
-  animation:scrollShine 5s ease-in-out infinite;
-}
-@keyframes scrollShine{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-#scrollBtn.show{animation:bounce 2s ease-in-out infinite,scrollShine 5s ease-in-out infinite}
+
 
 /* Glossy verse block */
 .vc{
@@ -267,12 +228,7 @@ footer{padding:1.6rem;text-align:center;background:var(--text);color:rgba(255,25
 }
 
 /* Polished footer */
-footer{
-  background:linear-gradient(135deg,var(--text) 0%,#6e4e5b 50%,var(--text) 100%);
-  background-size:200% 200%;
-  animation:footerShine 8s ease-in-out infinite;
-}
-@keyframes footerShine{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
 
 /* Sharper curtain names */
 .cc-names{
@@ -280,24 +236,13 @@ footer{
 }
 
 /* Richer hero background with aurora shimmer */
-.hero::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 100% 60% at 50% -10%,rgba(255,255,255,.5),transparent 60%);
-  mix-blend-mode:overlay;
-}
+
 
 /* Image shine that pulses */
 .cp-img{
   box-shadow:
     0 16px 48px rgba(180,130,140,.32),
-    0 4px 16px rgba(180,130,140,.2),
-    inset 0 0 0 2px rgba(255,255,255,.3),
-    0 0 48px rgba(232,160,160,.2);
-  animation:imagePulse 4s ease-in-out infinite;
-}
-@keyframes imagePulse{
-  0%,100%{box-shadow:0 16px 48px rgba(180,130,140,.32),0 4px 16px rgba(180,130,140,.2),inset 0 0 0 2px rgba(255,255,255,.3),0 0 48px rgba(232,160,160,.2)}
-  50%{box-shadow:0 20px 60px rgba(180,130,140,.42),0 6px 20px rgba(180,130,140,.3),inset 0 0 0 2px rgba(255,255,255,.4),0 0 70px rgba(232,160,160,.35)}
+    inset 0 0 0 2px rgba(255,255,255,.3);
 }
 
 /* FAIRY-TALE SHINE EFFECTS */
@@ -307,87 +252,41 @@ footer{
 .star{
   position:absolute;width:3px;height:3px;border-radius:50%;
   background:radial-gradient(circle,rgba(255,255,255,.95),rgba(255,230,240,.4) 50%,transparent 70%);
-  box-shadow:0 0 6px rgba(255,230,240,.8),0 0 12px rgba(255,214,232,.5);
+  box-shadow:0 0 6px rgba(255,230,240,.8);
   opacity:0;animation:twinkle ease-in-out infinite;
+  will-change:opacity;
 }
 @keyframes twinkle{
-  0%,100%{opacity:0;transform:scale(.5)}
-  50%{opacity:1;transform:scale(1.2)}
+  0%,100%{opacity:0}
+  50%{opacity:1}
 }
 
 /* Shimmering names */
 .nb{
-  background:linear-gradient(135deg,#3d2837 0%,#6a3a48 25%,#94516a 50%,#6a3a48 75%,#3d2837 100%);
-  background-size:200% auto;
-  -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;color:transparent;
-  animation:shimmerFlow 6s ease-in-out infinite;
-  filter:drop-shadow(0 3px 10px rgba(90,62,75,.4)) drop-shadow(0 0 20px rgba(201,169,110,.25));
+  color:#5a3e4b;
   position:relative;
   font-weight:400;
+  text-shadow:0 2px 8px rgba(201,169,110,.25);
 }
-.nb::before{
-  content:attr(data-text);
-  position:absolute;top:0;left:0;right:0;
-  color:transparent;
-  background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,.85) 50%,transparent 70%);
-  background-size:200% auto;
-  -webkit-background-clip:text;background-clip:text;
-  animation:glimmer 4s ease-in-out infinite;
-  pointer-events:none;
-  z-index:2;
-}
-@keyframes glimmer{
-  0%{background-position:-100% 50%}
-  100%{background-position:200% 50%}
-}
-@keyframes shimmerFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+50%{background-position:100% 50%}}
 
 /* Curtain names with subtle shimmer */
 .cc-names{
-  background:linear-gradient(135deg,#5a3e4b 0%,#c896a8 30%,#eb8c9b 50%,#d4a574 70%,#5a3e4b 100%);
-  background-size:200% auto;
-  -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;color:transparent;
-  animation:shimmerFlow 5s ease-in-out infinite;
+  color:#5a3e4b;
   filter:drop-shadow(0 2px 6px rgba(232,160,160,.3));
 }
 
 /* Photo frame glow */
-.pf::before{
-  box-shadow:0 0 28px rgba(201,169,110,.25),inset 0 0 14px rgba(232,160,160,.15);
-  animation:framePulse 4s ease-in-out infinite;
-}
-@keyframes framePulse{
-  0%,100%{box-shadow:0 0 28px rgba(201,169,110,.25),inset 0 0 14px rgba(232,160,160,.15)}
-  50%{box-shadow:0 0 40px rgba(201,169,110,.4),inset 0 0 20px rgba(232,160,160,.25)}
-}
+.pf::before{box-shadow:0 0 28px rgba(201,169,110,.25)}
 
 /* Countdown cards - subtle top shine */
-.cb{position:relative;overflow:hidden}
-.cb::before{
-  content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);
-  animation:cardShine 6s ease-in-out infinite;
-}
-@keyframes cardShine{0%,100%{left:-100%}50%{left:100%}}
+
 
 /* Get Directions button - magical glow */
 .mb{
   position:relative;overflow:hidden;
-  box-shadow:0 4px 18px rgba(200,130,150,.32),0 0 24px rgba(232,160,160,.2);
-  animation:btnGlow 3s ease-in-out infinite;
+  box-shadow:0 4px 18px rgba(200,130,150,.32);
 }
-@keyframes btnGlow{
-  0%,100%{box-shadow:0 4px 18px rgba(200,130,150,.32),0 0 24px rgba(232,160,160,.2)}
-  50%{box-shadow:0 6px 24px rgba(200,130,150,.45),0 0 32px rgba(232,160,160,.4)}
-}
-.mb::after{
-  content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
-  animation:btnShine 4s ease-in-out infinite;
-}
-@keyframes btnShine{0%,100%{left:-100%}50%{left:100%}}
 
 /* Venue card - dreamy glow */
 .vcd{
@@ -420,14 +319,7 @@ footer{
 }
 
 /* Tag in curtain - magical border glow */
-.cc-tag{
-  box-shadow:0 0 20px rgba(201,169,110,.35),inset 0 0 12px rgba(255,255,255,.15);
-  animation:cfl 3s ease-in-out infinite,tagGlow 3s ease-in-out infinite;
-}
-@keyframes tagGlow{
-  0%,100%{box-shadow:0 0 20px rgba(201,169,110,.35),inset 0 0 12px rgba(255,255,255,.15)}
-  50%{box-shadow:0 0 32px rgba(201,169,110,.55),inset 0 0 16px rgba(255,255,255,.25)}
-}
+
 
 /* Scratch card glow */
 .sco{
@@ -474,7 +366,6 @@ footer{
 <div id="mp">
   <div id="pc2"></div>
   <div id="stars"></div>
-  <div class="gloss"></div>
 
   <section class="hero">
     <div class="ft">🌸</div>
@@ -488,9 +379,9 @@ footer{
     </div>
     <div class="xs">✝</div>
     <div class="name-wrapper">
-      <div class="nb" data-text="Paul">Paul</div>
+      <div class="nb">Paul</div>
       <div class="na">&amp;</div>
-      <div class="nb" data-text="Roshin">Roshin</div>
+      <div class="nb">Roshin</div>
       <div class="name-flourish"></div>
     </div>
     <div class="vc rv">
@@ -598,7 +489,7 @@ function open_curtain() {
 function spawn_petals() {
   var pc = document.getElementById('pc2');
   var e = ['🌸','🌺','🌹','🌷','✿','❀','🪷'];
-  for (var i = 0; i < 20; i++) {
+  for (var i = 0; i < 10; i++) {
     var p = document.createElement('div');
     p.className = 'pt';
     p.textContent = e[Math.floor(Math.random() * e.length)];
@@ -613,7 +504,7 @@ function spawn_petals() {
 
 function spawn_stars() {
   var sc = document.getElementById('stars');
-  for (var i = 0; i < 40; i++) {
+  for (var i = 0; i < 15; i++) {
     var s = document.createElement('div');
     s.className = 'star';
     s.style.left = (Math.random() * 100) + 'vw';
