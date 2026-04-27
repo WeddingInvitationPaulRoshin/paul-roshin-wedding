@@ -416,6 +416,7 @@ footer{padding:1.6rem;text-align:center;background:var(--text);color:rgba(255,25
     </div>
   </section>
 
+  <div id="post-scratch" style="display:none">
   <div class="dp">🌸 ✦ 🌸 ✦ 🌸</div>
 
   <section class="ew" id="ewsec">
@@ -444,6 +445,7 @@ footer{padding:1.6rem;text-align:center;background:var(--text);color:rgba(255,25
     <div style="color:var(--gold);font-size:1.1rem;margin-bottom:.4rem">✝ 🌸 ✝</div>
     Together in faith, love &amp; joy<br>Paul &amp; Roshin
   </footer>
+</div>
 </div>
 
 <script>
@@ -581,7 +583,15 @@ function scratch_init() {
       // Reveal countdown after scratch
       var cdw = document.getElementById('cdwrap');
       if(cdw){ cdw.style.display='block'; cdw.style.animation='fadeIn 1s ease forwards'; }
-      setTimeout(function(){ document.getElementById('ewsec').scrollIntoView({behavior:'smooth'}); },3500);
+      // Reveal Holy Matrimony, Venue, Footer
+      setTimeout(function(){
+        var ps = document.getElementById('post-scratch');
+        if(ps){ ps.style.display='block'; ps.style.animation='fadeIn 1.2s ease forwards'; }
+      }, 1800);
+      setTimeout(function(){ 
+        var ew = document.getElementById('ewsec');
+        if(ew) ew.scrollIntoView({behavior:'smooth'}); 
+      }, 3800);
     }
   }
   canvas.addEventListener('mousedown',function(e){drawing=true;do_scratch(e);});
