@@ -334,7 +334,9 @@ footer{padding:1.6rem;text-align:center;background:var(--text);color:rgba(255,25
 /* Gentle pulse for cc-cross */
 .cc-cross{
   filter:drop-shadow(0 0 12px rgba(201,169,110,.5));
-}</style>
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+</style>
 </head>
 <body>
 
@@ -408,7 +410,7 @@ footer{padding:1.6rem;text-align:center;background:var(--text);color:rgba(255,25
       <canvas id="sc"></canvas>
     </div>
     <div class="sh" id="sh">🎴 Scratch the card to reveal</div>
-    <div style="margin-top:2.8rem">
+    <div id="cdwrap" style="margin-top:2.8rem;display:none">
       <div class="sl">Counting down to forever</div>
       <div class="cw" id="cd"></div>
     </div>
@@ -576,7 +578,10 @@ function scratch_init() {
     if(c/(canvas.width*canvas.height)>0.46){
       done=true; canvas.style.display='none'; celebrate();
       document.getElementById('sh').textContent='🎉 Save the Date — May 31, 2026!';
-      setTimeout(function(){ document.getElementById('ewsec').scrollIntoView({behavior:'smooth'}); },2800);
+      // Reveal countdown after scratch
+      var cdw = document.getElementById('cdwrap');
+      if(cdw){ cdw.style.display='block'; cdw.style.animation='fadeIn 1s ease forwards'; }
+      setTimeout(function(){ document.getElementById('ewsec').scrollIntoView({behavior:'smooth'}); },3500);
     }
   }
   canvas.addEventListener('mousedown',function(e){drawing=true;do_scratch(e);});
