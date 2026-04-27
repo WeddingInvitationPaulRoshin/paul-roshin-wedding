@@ -44,28 +44,62 @@ body{font-family:"Lato",sans-serif;background:var(--cream);color:var(--text);ove
 .cp svg{width:100%;height:100%;display:block}
 #cs.open .cp.l{transform:translateX(-102%)}
 #cs.open .cp.r{transform:translateX(102%)}
-.cc{position:relative;z-index:5;text-align:center;padding:1.5rem 2rem;pointer-events:none}
-.cc-cross{font-size:2.8rem;color:var(--gold);margin-bottom:0.6rem;animation:cpx 2.5s infinite}
-@keyframes cpx{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.06)}}
+.cc{position:relative;z-index:5;text-align:center;padding:2rem 1.5rem;pointer-events:none;max-width:500px;margin:0 auto;width:100%}
+.cc-cross{
+  font-size:3.2rem;color:var(--gold);
+  margin-bottom:1rem;
+  text-shadow:0 4px 20px rgba(212,165,116,.4),0 0 40px rgba(212,165,116,.2);
+  animation:cpx 2.5s ease-in-out infinite;
+}
+@keyframes cpx{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
 .cc-names{font-family:"Great Vibes",cursive;font-size:clamp(3rem,9vw,5.5rem);color:var(--text);line-height:1.1;margin-bottom:.4rem;text-rendering:optimizeLegibility}
-.cc-sub{font-family:"Cormorant Garamond",serif;font-size:1rem;letter-spacing:.38em;color:var(--text);text-transform:uppercase;margin-bottom:1.8rem;font-weight:600;text-shadow:0 1px 3px rgba(255,255,255,.6)}
-.cc-tag{display:inline-flex;align-items:center;gap:.6rem;border:2px solid var(--text);padding:.65rem 1.9rem;border-radius:2rem;font-family:"Cormorant Garamond",serif;font-size:.88rem;letter-spacing:.22em;color:var(--text);text-transform:uppercase;font-weight:600;background:rgba(255,255,255,.4);animation:cfl 3s ease-in-out infinite;text-shadow:0 1px 3px rgba(255,255,255,.6)}
-@keyframes cfl{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.cc-sub{
+  font-family:"Cormorant Garamond",serif;
+  font-size:.92rem;letter-spacing:.42em;
+  color:var(--text);text-transform:uppercase;
+  margin:.5rem 0 2.4rem;
+  font-weight:600;
+  text-shadow:0 1px 2px rgba(255,255,255,.7);
+  position:relative;display:inline-block;
+  padding:0 2rem;
+}
+.cc-sub::before,.cc-sub::after{
+  content:"";position:absolute;top:50%;width:24px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  transform:translateY(-50%);
+}
+.cc-sub::before{left:-10px}
+.cc-sub::after{right:-10px}
+.cc-tag{
+  display:inline-flex;align-items:center;gap:.8rem;
+  border:1.5px solid var(--gold);
+  padding:.7rem 2rem;border-radius:2rem;
+  font-family:"Cormorant Garamond",serif;font-size:.85rem;letter-spacing:.25em;
+  color:var(--text);text-transform:uppercase;font-weight:600;
+  background:rgba(255,255,255,.55);
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+  animation:cfl 3.5s ease-in-out infinite;
+  text-shadow:0 1px 2px rgba(255,255,255,.6);
+  box-shadow:0 4px 16px rgba(212,165,116,.2);
+}
+@keyframes cfl{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 .cc-hint{
-  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
-  font-size:.85rem;letter-spacing:.32em;
+  position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  font-size:.8rem;letter-spacing:.34em;
   color:var(--text);text-transform:uppercase;
   font-family:"Cormorant Garamond",serif;font-weight:600;
-  animation:cbl 1.8s infinite;white-space:nowrap;pointer-events:none;
-  text-shadow:0 2px 8px rgba(255,255,255,.8),0 0 2px rgba(255,255,255,.9);
-  padding:.5rem 1.4rem;
-  background:rgba(255,255,255,.4);
+  animation:cbl 2.2s ease-in-out infinite;white-space:nowrap;pointer-events:none;
+  text-shadow:0 1px 3px rgba(255,255,255,.7);
+  padding:.55rem 1.6rem;
+  background:rgba(255,255,255,.5);
   border-radius:2rem;
-  backdrop-filter:blur(4px);
-  border:1px solid rgba(255,255,255,.6);
-  box-shadow:0 4px 16px rgba(180,130,140,.2);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  border:1px solid rgba(212,165,116,.4);
+  box-shadow:0 6px 20px rgba(180,130,140,.18);
 }
-@keyframes cbl{0%,100%{opacity:1;transform:translateX(-50%) scale(1)}50%{opacity:.75;transform:translateX(-50%) scale(1.05)}}
+@keyframes cbl{0%,100%{opacity:.85;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.04)}}
 
 /* MAIN */
 #mp{display:none}
@@ -336,6 +370,16 @@ footer{padding:1.6rem;text-align:center;background:var(--text);color:rgba(255,25
   filter:drop-shadow(0 0 12px rgba(201,169,110,.5));
 }
 @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+@media(max-width:480px){
+  .cc{padding:1.5rem 1.2rem}
+  .cc-cross{font-size:2.6rem;margin-bottom:.8rem}
+  .cc-names{font-size:3.6rem;margin-bottom:.5rem}
+  .cc-sub{font-size:.78rem;letter-spacing:.32em;margin:.3rem 0 1.8rem;padding:0 1.2rem}
+  .cc-sub::before,.cc-sub::after{width:18px}
+  .cc-tag{font-size:.74rem;padding:.6rem 1.6rem;letter-spacing:.22em}
+  .cc-hint{font-size:.7rem;padding:.45rem 1.2rem;letter-spacing:.28em}
+}
 </style>
 </head>
 <body>
@@ -360,7 +404,7 @@ footer{padding:1.6rem;text-align:center;background:var(--text);color:rgba(255,25
   <div class="cc">
     <div class="cc-cross">✝</div>
     <div class="cc-names">Paul &amp; Roshin</div>
-    <div class="cc-sub">Wedding Invitation · May 31, 2026</div>
+    <div class="cc-sub">Wedding Invitation</div>
     <div class="cc-tag">✦ &nbsp; Together in Love &nbsp; ✦</div>
   </div>
   <div class="cc-hint">✦ Tap anywhere to open ✦</div>
